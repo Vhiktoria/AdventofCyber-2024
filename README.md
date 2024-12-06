@@ -112,3 +112,28 @@ This project documents my approach to solving the Day 2 challenge of the Advent 
 ---
 
 For a detailed explanation, check out the [Medium Article](https://medium.com/@cyberwitch/day-2-log-analysis-true-positive-vs-false-positive-advent-of-cyber-2024-df1f6ecf9f99).  
+
+
+## Day 3: Frosty Pines Resort Investigation and Exploitation  
+
+### Blue Team Investigation with ELK  
+As a blue team analyst, I investigated a suspicious activity on the Frosty Pines website using Kibana. Here's what I uncovered:  
+1. **Accessing Kibana**: Connected to the ELK stack via `http://10.10.110.47:5601`.  
+2. **Filtering Logs**: Used the query `message: "shell.php"` and set the date/time range to October 3rd, 2024, between **11:30 and 12:00**.  
+3. **Findings**: Discovered that a malicious `shell.php` file was uploaded to `/media/images/rooms/` by an attacker using IP `10.11.83.34`. Commands like `ls` and `pwd` were executed on the server.  
+
+### Red Team Exploitation  
+Switching to the offensive side, I recreated the attack:  
+1. **Logged In**: Accessed the admin account on the Frosty Pines website.  
+2. **Uploaded Malicious File**: Added a PHP reverse shell (`shell.php`) under the guise of an image.  
+3. **Explored Server**: Navigated to the file location, executed commands, and found the `flag.txt` file.  
+4. **Flag Retrieval**: Ran `cat flag.txt` to display the contents of the flag.  
+
+### Key Recommendations:  
+1. Enforce strict file validation to reject non-image file types during uploads.  
+2. Remove execution permissions for files in upload directories.  
+3. Regularly audit logs for suspicious activities.  
+
+---
+
+For a detailed explanation, check out the [Medium Article](https://medium.com/@cyberwitch/hi-there-in-this-post-im-excited-to-share-how-i-tackled-two-cybersecurity-challenges-involving-398294d476a2). 
