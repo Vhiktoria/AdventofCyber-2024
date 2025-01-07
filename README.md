@@ -230,3 +230,65 @@ Always validate and sanitize user input to prevent malicious payloads.
 Tools like Burp Suite can streamline vulnerability testing and exploitation.
 
 For more details, check out my Medium post on Day 5's challenge [Medium Article](https://medium.com/@cyberwitch/day-5-xxe-advent-of-cyber-2024-a242a81de773).
+
+# Day 6: Malware Evasion  
+
+Today, i explored malware evasion techniques, analyzed sandbox detection, and learned about YARA rules.  
+
+## **Key Topics**  
+- Anti-sandbox techniques  
+- Obfuscation to evade YARA rules  
+- Using FLOSS for string extraction  
+- Analyzing Sysmon logs with custom filters  
+
+---
+
+## **Repository Overview**  
+
+### **1. Malware**  
+- `MerryChristmas.exe`: The original executable that triggers YARA detection.  
+- `MerryChristmasObf.exe`: The obfuscated version that evades YARA detection.  
+- `malstrings.txt`: Extracted strings from the malware using FLOSS.  
+
+### **2. Scripts**  
+- `JingleBells.ps1`: A PowerShell script that monitors for YARA matches and logs results in `YaraMatches.txt`.  
+
+### **3. YARA Rules**  
+- `sandbox_detection.yara`: A YARA rule that detects sandbox environments by checking for specific strings or file paths.  
+
+### **4. Analysis Files**  
+- `FLOSS_commands.txt`: Commands used to extract strings from the malware.  
+- `Sysmon_filter_query.xml`: Custom XML filter to locate specific Sysmon events.  
+- `YaraMatches.txt`: Log file for YARA matches during the analysis.  
+
+---
+
+## **How to Use**  
+
+### **1. Setup the Environment**  
+1. Install PowerShell.  
+2. Install FLOSS (to extract strings).  
+3. Ensure Sysmon is installed and logging events.
+
+### **2. Run the YARA Monitoring Script**  
+Navigate to the `scripts` directory and execute:  
+```powershell
+.\JingleBells.ps1
+
+### **3. Test the Malware** 
+1. Run the MerryChristmas.exe file to observe YARA detection.
+2. Run the MerryChristmasObf.exe file to see how obfuscation bypasses YARA.
+
+### **4. Analyze with FLOSS**  
+Extract strings from the malware using:
+floss.exe C:\Tools\Malware\MerryChristmas.exe | Out-File C:\Tools\malstrings.txt
+
+### **5. Filter Sysmon Logs**  
+1. Use the custom XML filter (Sysmon_filter_query.xml) to locate related events.
+2. Navigate to Event Viewer > Applications and Service Logs > Sysmon > Operational to view detailed logs.
+
+### **Flags Captured**  
+THM{GlitchWasHere}
+THM{HiddenClue}
+
+For more details, check out my Medium post on Day 6's challenge [Medium Article](https://medium.com/@cyberwitch/day-6-malware-evasion-advent-of-cyber-2024-de50dafbd92f).
