@@ -233,8 +233,54 @@ For more details, check out my Medium post on Day 5's challenge [Medium Article]
 
 # Day 6: Malware Evasion  
 
+Welcome to **Day 6 of Advent of Cyber**! In this challenge, we explored **malware evasion techniques**, how to analyze malware behavior, and how tools like **YARA rules** and **Sysmon logs** are used to detect malicious patterns.
 
+---
 
-For more details, check out my Medium post on Day 6's challenge [Medium Article](https://medium.com/@cyberwitch/day-6-malware-evasion-advent-of-cyber-2024-de50dafbd92f).
+## 📌 Learning Objectives
+1. Analyze malware behavior using sandbox tools.
+2. Explore how to use YARA rules to detect malicious patterns.
+3. Learn about various malware evasion techniques.
+4. Implement an evasion technique to bypass YARA rule detection.
+
+---
+
+## 🕵️‍♀️ Detecting Sandboxes
+A **sandbox** is an isolated environment where (malicious) code is executed without affecting anything outside the system. Malicious actors often implement **anti-sandbox techniques** to evade detection during analysis.
+
+For this challenge, we focused on an anti-sandbox technique that checks for the directory `c:\Program Files` via the registry path:  
+`HKLM\Software\Microsoft\Windows\CurrentVersion`.  
+If this directory exists, the malware identifies it as a sandbox environment and halts execution.
+
+---
+
+## 🛠️ Using YARA Rules for Detection
+**YARA** is a powerful tool for identifying malware based on specific patterns. It allows analysts to define rules based on strings, file headers, or behavior to detect malicious activity.
+In this challenge, Mayor Malware created a script under the `c:\Tools` directory that frequently monitors for specific strings using YARA rules and logs matches to `c:\Tools\YaraMatches.txt`.
+
+### Steps:
+1. Open **PowerShell** (as Administrator).
+2. Navigate to the `c:\Tools` directory and inspect the script:
+   cd C:\Tools
+   dir
+   Get-Content JingleBells.ps1
+   The script contains a YARA rule monitoring for specific patterns.
+3. Run the script: .\JingleBells.ps1
+The script continuously checks for matches and logs results in YaraMatches.txt.
+
+4. Execute the malware:
+Navigate to c:\Tools\Malware.
+Run MerryChristmas.exe by double-clicking it.
+
+5. Observe the detection:
+The YARA rule detects the malware and logs the first flag:
+THM{GlitchWasHere}.
+
+💡 Key Takeaways
+Anti-sandbox techniques help malware evade analysis environments.
+YARA rules are effective for detecting patterns but can be bypassed through obfuscation.
+Tools like FLOSS and Sysmon are invaluable for malware analysis.
+
+For detailed walkthrough, check out my Medium post on Day 6's challenge [Medium Article](https://medium.com/@cyberwitch/day-6-malware-evasion-advent-of-cyber-2024-de50dafbd92f).
 
 
