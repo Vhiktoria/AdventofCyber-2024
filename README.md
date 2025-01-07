@@ -229,4 +229,4 @@ Always validate and sanitize user input to prevent malicious payloads.
 
 Tools like Burp Suite can streamline vulnerability testing and exploitation.
 
-For more details, check out my Medium post on Day 4's challenge [Medium Article](https://medium.com/@cyberwitch/day-5-xxe-advent-of-cyber-2024-a242a81de773).
+For more details, check out my Medium post on Day 5's challenge [Medium Article](https://medium.com/@cyberwitch/day-5-xxe-advent-of-cyber-2024-a242a81de773).
